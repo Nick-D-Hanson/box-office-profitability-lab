@@ -1,41 +1,48 @@
 # Box Office Profitability Lab
 
-Exploring the factors associated with film profitability through large-scale data preparation, exploratory analysis, and comparative machine learning.
+**What makes a film commercially successful—and which signals are genuinely useful?**
 
-**Research question:** How well can historical movie metadata distinguish films whose reported box-office revenue exceeds their stated production budget?
+A collaborative applied data-science study of historical film performance using large-scale data preparation, exploratory analysis, and machine learning. The work examines whether publicly reported movie attributes distinguish releases whose box-office revenue exceeds their production budgets.
 
-> **Scope:** This is a retrospective classification study, not a validated pre-release box-office forecasting tool. Some features, including audience ratings and popularity, can reflect information only available after a movie's release.
+**Project type:** Historical research | **Stack:** Python, Pandas, PySpark, scikit-learn | **Origin:** Box Office Quants graduate capstone
 
-## Data and methods
+## The business question
 
-- **Sources:** [TMDb Movies Dataset on Kaggle](https://www.kaggle.com/datasets/asaniczka/tmdb-movies-dataset-2023-930k-movies), plus IMDb's [non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/) for crew and name metadata.
-- **Processing:** Python, Pandas, and PySpark for data cleaning, exploratory analysis, feature engineering, and joins.
-- **Models explored:** random forest, logistic regression, and multilayer perceptron classification, alongside tuning and K-fold cross-validation experiments.
-- **Segments:** comparisons between pre-2020 and 2020-onward movie releases.
-- **Outcome:** a binary indicator based on whether reported revenue minus production budget is positive. This proxy does **not** account for marketing, distribution, or other financial costs.
+Film decisions combine uncertainty about audience demand, production investment, and market conditions. This project explores associations between available movie attributes and a simple financial outcome: **reported revenue greater than production budget**.
 
-## Research notebooks
+That is **not** net profit: marketing, distribution, and other costs are outside the label. This is also **not yet a pre-release forecasting product**—some analyzed signals are observed after release.
 
-| Notebook | Purpose |
+## What the team built
+
+- Joined and cleaned movie metadata and IMDb credits using Python, Pandas, and PySpark.
+- Profiled distributions, missingness, and patterns across historical releases.
+- Explored random forests, logistic regression, and multilayer perceptron classifiers.
+- Compared model behavior across releases before 2020 and from 2020 onward.
+- Documented where retrospective classification differs from a useful prospective prediction.
+
+## Explore the analysis
+
+| Notebook | What you will find |
 |---|---|
-| [Exploratory data analysis](Box_Office_Quants_EDA_7_17_24.ipynb) | Source ingestion, joins, cleaning, and preliminary profiling |
-| [Initial models](Box_Office_Quants_FirstModel_7_24_24.ipynb) | First profitability classifiers and split-period comparisons |
-| [Model tuning](Box_Office_Quants_InitialModelTuning_8_7_24.ipynb) | Extended experiments and alternative model configurations |
-| [Final experimental analysis](Box_Office_Quants_FinalPresentationModels_8_21_24.ipynb) | Feature importance, cross-validation, and comparative results |
+| [Explore the dataset](Box_Office_Quants_EDA_7_17_24.ipynb) | Ingestion, joining, cleaning, and profiling |
+| [Establish initial models](Box_Office_Quants_FirstModel_7_24_24.ipynb) | Initial classifiers and period comparisons |
+| [Tune and compare](Box_Office_Quants_InitialModelTuning_8_7_24.ipynb) | Model experiments and parameter exploration |
+| [Review findings](Box_Office_Quants_FinalPresentationModels_8_21_24.ipynb) | Comparative analyses and feature importance |
 
-These notebooks preserve the original exploration and its intermediate outputs. They were prepared for a Colab/Spark environment and are **not yet a one-command reproducible pipeline**. Download the source datasets under their applicable terms and use your own local Kaggle configuration; never commit credentials.
+**Data:** [TMDb Movies Dataset](https://www.kaggle.com/datasets/asaniczka/tmdb-movies-dataset-2023-930k-movies) and [IMDb non-commercial data](https://developer.imdb.com/non-commercial-datasets/). The original notebooks were developed using Colab/Spark and are preserved as research artifacts, not presented as a one-command reproducible application. No private credentials are required in the repository.
 
-## Interpretation and known limitations
+## What this demonstrates
 
-1. The label represents **revenue greater than production budget**, not true accounting profitability.
-2. Audience ratings, vote counts, and popularity can introduce hindsight if a model is described as predicting profitability *before release*. No such prospective claim is made here.
-3. Random train/test splits and shared preprocessing from the original notebooks require stricter validation before reporting generalized performance.
-4. Comparisons across COVID-era periods are exploratory associations, not causal estimates.
+**Engineering:** integrating heterogeneous sources, analytical data preparation, PySpark workflows, and experiment organization.
 
-## Next engineering milestone
+**Analytical judgment:** defining measurable outcomes, comparing models, questioning feature availability, and explaining where apparently strong retrospective results might be misleading.
 
-Rebuild the research into a tested pipeline with explicit **as-of-release feature availability**, chronological holdouts, leakage-safe transformations, a simple financial baseline, and calibrated evaluation. Publish a model card with verified performance and failure cases before offering predictions.
+## Limitations and next iteration
 
-## Project origin
+Audience ratings and popularity can reflect post-release information. The historical notebooks also need stricter chronological holdouts and train-only preprocessing to support forward-looking performance claims. COVID-era comparisons describe associations rather than causal effects.
 
-This work began as a collaborative graduate data-science capstone by the **Box Office Quants** team. The notebooks remain as historical research artifacts; this repository's presentation and future independent engineering iterations are being developed as an ongoing portfolio project. Individual contributions should be specified rather than attributed to one person by default.
+The next engineering milestone is a leakage-aware pipeline using pre-release features, chronological validation, simple financial baselines, calibrated metrics, and a tested model card. No unverified predictive performance is claimed.
+
+## Attribution
+
+This project began as the **Box Office Quants** collaborative graduate data-science capstone. The original research notebooks reflect team work; I am preserving that attribution while evolving the repository into a clearer engineering case study.
